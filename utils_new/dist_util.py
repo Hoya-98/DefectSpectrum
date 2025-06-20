@@ -6,7 +6,6 @@ from torch import distributed as dist
 from torch.utils.data.sampler import Sampler
 
 
-"""
 def get_rank():
     if not dist.is_available():
         return 0
@@ -15,10 +14,7 @@ def get_rank():
         return 0
 
     return dist.get_rank()
-"""
 
-def get_rank() -> int:
-    return dist.get_rank() if dist.is_available() and dist.is_initialized() else 0
 
 def synchronize():
     if not dist.is_available():

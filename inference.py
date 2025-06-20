@@ -6,6 +6,7 @@ import random
 import matplotlib.pyplot as plt
 import torchvision.transforms as transforms
 from torch import nn
+import torch.nn.functional as F
 import os
 import sys
 import torchvision
@@ -171,10 +172,10 @@ def log_images(iter, image_dir, mask_dir, mask_converted_dir):
         rgb_mask = semantic_mask_to_rgb(argmax_depth.cpu().numpy())
 
         # save
-        im_save(image_dir, image, f'samples_image_{img_name}_{i}_{dist.get_rank()}.png', is_img=True)
-        im_save(mask_dir, rgb_mask, f'samples_mask_{img_name}_{i}_{dist.get_rank()}.png', is_img=False)
+        im_save(image_dir, image, f'samples_image_{img_name}_{i}_{get_rank()}.png', is_img=True)
+        im_save(mask_dir, rgb_mask, f'samples_mask_{img_name}_{i}_{get_rank()}.png', is_img=False)
         converted_mask = np.array(argmax_depth.cpu().numpy(), dtype=np.uint8)
-        im_save(mask_converted_dir, converted_mask, f'samples_converted_mask_{img_name}_{i}_{dist.get_rank()}.png', is_img=False)
+        im_save(mask_converted_dir, converted_mask, f'samples_converted_mask_{img_name}_{i}_{get_rank()}.png', is_img=False)
 
     #dist.barrier()
 

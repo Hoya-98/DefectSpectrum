@@ -133,7 +133,7 @@ dmypy.json
 #*.png
 
 *.html
-results/
+# results/
 #*.jpg
 #*.jpeg
 *.zip
@@ -143,4 +143,4 @@ results/
 .vscode*
 events.*
 
-scripts/
+# scripts/
